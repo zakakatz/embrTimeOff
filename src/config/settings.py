@@ -57,6 +57,29 @@ class AccessControlSettings:
 
 
 @dataclass
+class CSVImportExportSettings:
+    """CSV import/export configuration."""
+    
+    # Maximum file size for uploads (in bytes)
+    max_file_size_bytes: int = 100 * 1024 * 1024  # 100MB
+    
+    # Allowed file extensions
+    allowed_extensions: List[str] = field(default_factory=lambda: [".csv"])
+    
+    # Default delimiter
+    default_delimiter: str = ","
+    
+    # Maximum rows per import
+    max_rows_per_import: int = 100000
+    
+    # Rollback window (in days)
+    rollback_window_days: int = 7
+    
+    # Batch size for processing
+    processing_batch_size: int = 100
+
+
+@dataclass
 class Settings:
     """Main application settings."""
     
@@ -78,6 +101,9 @@ class Settings:
     
     # Access Control
     access_control: AccessControlSettings = field(default_factory=AccessControlSettings)
+    
+    # CSV Import/Export
+    csv: CSVImportExportSettings = field(default_factory=CSVImportExportSettings)
     
     @classmethod
     def from_env(cls) -> "Settings":

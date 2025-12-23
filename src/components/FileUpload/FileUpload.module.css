@@ -1,0 +1,419 @@
+/**
+ * FileUpload Component Styles
+ * 
+ * Modern, accessible styling for the file upload interface
+ */
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Drop Zone */
+.dropZone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.dropZone:hover {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.dropZone:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.dropZone.dragging {
+  border-color: #3b82f6;
+  border-style: solid;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  transform: scale(1.01);
+}
+
+.fileInput {
+  display: none;
+}
+
+.dropZoneContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.uploadIcon {
+  width: 56px;
+  height: 56px;
+  color: #3b82f6;
+  background: #eff6ff;
+  border-radius: 50%;
+  padding: 14px;
+  margin-bottom: 0.5rem;
+}
+
+.uploadIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dropText {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.orText {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.browseButton {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.browseButton:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.supportText {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Error Display */
+.error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.errorIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.errorText {
+  flex: 1;
+  color: #991b1b;
+  font-size: 0.9rem;
+}
+
+.errorDismiss {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #dc2626;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.errorDismiss:hover {
+  opacity: 1;
+}
+
+/* Progress Indicator */
+.progressContainer {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.progressBar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progressEstimate {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0.5rem 0 0 0;
+  text-align: center;
+}
+
+/* File Summary */
+.summary {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.fileIcon {
+  font-size: 2rem;
+}
+
+.fileName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.fileSize {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.clearButton {
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clearButton:hover {
+  background: #fecaca;
+}
+
+/* Summary Stats */
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statLabel {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.statValue {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Encoding Section */
+.encodingSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.encodingLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.encodingSelect {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: white;
+  cursor: pointer;
+}
+
+.encodingSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.encodingWarning {
+  font-size: 0.8rem;
+  color: #d97706;
+}
+
+/* Data Preview */
+.preview {
+  margin-top: 1.5rem;
+}
+
+.previewTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 1rem 0;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.previewTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.previewTable th,
+.previewTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.previewTable th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.previewTable tbody tr:hover {
+  background: #f9fafb;
+}
+
+.previewTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rowNumber {
+  color: #9ca3af;
+  font-size: 0.8rem;
+  width: 40px;
+  text-align: center;
+}
+
+.headerCell {
+  min-width: 120px;
+}
+
+.dataCell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emptyCell {
+  color: #d1d5db;
+}
+
+.previewNote {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .dropZone {
+    padding: 2rem 1rem;
+  }
+  
+  .summaryStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .statValue {
+    font-size: 1.25rem;
+  }
+  
+  .encodingSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

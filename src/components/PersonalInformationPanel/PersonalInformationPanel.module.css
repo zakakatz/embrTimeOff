@@ -1,0 +1,656 @@
+/**
+ * PersonalInformationPanel Styles
+ * 
+ * Distinctive styling with clear permission indicators and
+ * accessible inline editing experience.
+ */
+
+/* CSS Variables for theming */
+.panel {
+  --pip-bg: #fefefe;
+  --pip-border: #e0e0e0;
+  --pip-text: #1a1a2e;
+  --pip-text-muted: #6b7280;
+  --pip-primary: #0ea5e9;
+  --pip-primary-hover: #0284c7;
+  --pip-success: #10b981;
+  --pip-warning: #f59e0b;
+  --pip-error: #ef4444;
+  --pip-surface: #f8fafc;
+  --pip-surface-hover: #f1f5f9;
+  --pip-editable: #dbeafe;
+  --pip-readonly: #f3f4f6;
+  --pip-sensitive: #fef3c7;
+  --pip-radius: 12px;
+  --pip-radius-sm: 8px;
+  --pip-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --pip-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --pip-transition: 200ms ease;
+
+  font-family: 'DM Sans', 'Nunito', system-ui, sans-serif;
+  background: var(--pip-bg);
+  border-radius: var(--pip-radius);
+  box-shadow: var(--pip-shadow);
+  overflow: hidden;
+}
+
+/* Panel Header */
+.panelHeader {
+  padding: 1.75rem 2rem;
+  background: linear-gradient(135deg, var(--pip-primary) 0%, #6366f1 100%);
+  color: white;
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.panelSubtitle {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* Permission Legend */
+.permissionLegend {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.875rem 2rem;
+  background: var(--pip-surface);
+  border-bottom: 1px solid var(--pip-border);
+  font-size: 0.8rem;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--pip-text-muted);
+}
+
+.legendIcon {
+  font-size: 0.75rem;
+}
+
+.legendIcon.editable { color: var(--pip-primary); }
+.legendIcon.readOnly { color: var(--pip-text-muted); }
+.legendIcon.sensitive { color: var(--pip-warning); }
+
+/* Section Styles */
+.section {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--pip-border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.sectionTitle {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--pip-text);
+}
+
+.sectionDescription {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--pip-text-muted);
+  line-height: 1.4;
+}
+
+/* Fields Grid */
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+/* Field Container */
+.fieldContainer {
+  background: var(--pip-surface);
+  border: 1px solid transparent;
+  border-radius: var(--pip-radius-sm);
+  padding: 0.875rem 1rem;
+  transition: border-color var(--pip-transition), box-shadow var(--pip-transition);
+}
+
+.fieldContainer:hover {
+  border-color: var(--pip-border);
+}
+
+.fieldContainer.editing {
+  background: white;
+  border-color: var(--pip-primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.fieldContainer.hasError {
+  border-color: var(--pip-error);
+  background: #fef2f2;
+}
+
+.fieldContainer.hasError.editing {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* Field Header */
+.fieldHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--pip-text-muted);
+}
+
+.required {
+  color: var(--pip-error);
+  margin-left: 2px;
+}
+
+/* Permission Indicator */
+.permissionIndicator {
+  font-size: 0.7rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  background: var(--pip-surface-hover);
+}
+
+.permissionIndicator.editable {
+  color: var(--pip-primary);
+}
+
+.permissionIndicator.readOnly {
+  color: var(--pip-text-muted);
+}
+
+.permissionIndicator.sensitive {
+  color: var(--pip-warning);
+  background: var(--pip-sensitive);
+}
+
+/* Field Content */
+.fieldContent {
+  position: relative;
+}
+
+.displayWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2rem;
+}
+
+.fieldValue {
+  font-size: 0.95rem;
+  color: var(--pip-text);
+  word-break: break-word;
+}
+
+.editBtn {
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--pip-primary);
+  background: transparent;
+  border: 1px solid var(--pip-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--pip-transition);
+  white-space: nowrap;
+}
+
+.editBtn:hover {
+  background: var(--pip-primary);
+  color: white;
+}
+
+.editBtn:focus-visible {
+  outline: 2px solid var(--pip-primary);
+  outline-offset: 2px;
+}
+
+/* Editing Wrapper */
+.editingWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--pip-text);
+  background: white;
+  border: 1px solid var(--pip-border);
+  border-radius: 6px;
+  transition: border-color var(--pip-transition);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--pip-primary);
+}
+
+.input.select {
+  cursor: pointer;
+}
+
+.input.textarea {
+  resize: vertical;
+  min-height: 4rem;
+}
+
+.input.inputError {
+  border-color: var(--pip-error);
+}
+
+/* Edit Actions */
+.editActions {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.actionBtn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--pip-transition);
+}
+
+.saveBtn {
+  background: var(--pip-success);
+  color: white;
+}
+
+.saveBtn:hover:not(:disabled) {
+  background: #059669;
+}
+
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  background: var(--pip-surface-hover);
+  color: var(--pip-text-muted);
+}
+
+.cancelBtn:hover {
+  background: var(--pip-border);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--pip-primary);
+  outline-offset: 2px;
+}
+
+/* Error Message */
+.errorMessage {
+  margin-top: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.8rem;
+  color: var(--pip-error);
+  background: #fef2f2;
+  border-radius: 4px;
+  border-left: 3px solid var(--pip-error);
+}
+
+/* Emergency Contacts */
+.emergencyContacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.emergencyCard {
+  position: relative;
+  background: white;
+  border: 1px solid var(--pip-border);
+  border-radius: var(--pip-radius-sm);
+  padding: 1.25rem;
+  transition: box-shadow var(--pip-transition);
+}
+
+.emergencyCard:hover {
+  box-shadow: var(--pip-shadow);
+}
+
+.emergencyCard.primaryContact {
+  border-color: var(--pip-primary);
+  border-width: 2px;
+}
+
+.primaryBadge {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  background: var(--pip-primary);
+  border-radius: 4px;
+}
+
+.contactName {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--pip-text);
+}
+
+.contactRelationship {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--pip-text-muted);
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--pip-text);
+}
+
+.contactPhone,
+.contactEmail {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.contactButtons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--pip-border);
+}
+
+.editContactBtn,
+.deleteContactBtn {
+  flex: 1;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--pip-transition);
+}
+
+.editContactBtn {
+  color: var(--pip-primary);
+  background: var(--pip-editable);
+  border: 1px solid var(--pip-primary);
+}
+
+.editContactBtn:hover {
+  background: var(--pip-primary);
+  color: white;
+}
+
+.deleteContactBtn {
+  color: var(--pip-error);
+  background: transparent;
+  border: 1px solid var(--pip-error);
+}
+
+.deleteContactBtn:hover {
+  background: var(--pip-error);
+  color: white;
+}
+
+/* Emergency Contact Form */
+.emergencyForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.formRow label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--pip-text-muted);
+}
+
+.formRow label input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: var(--pip-primary);
+}
+
+.errorText {
+  font-size: 0.75rem;
+  color: var(--pip-error);
+}
+
+.contactActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.noContacts {
+  padding: 2rem;
+  text-align: center;
+  color: var(--pip-text-muted);
+  background: var(--pip-surface);
+  border-radius: var(--pip-radius-sm);
+  border: 1px dashed var(--pip-border);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--pip-transition);
+}
+
+.btnPrimary {
+  background: var(--pip-primary);
+  color: white;
+  border: none;
+}
+
+.btnPrimary:hover {
+  background: var(--pip-primary-hover);
+}
+
+.btnSecondary {
+  background: var(--pip-surface);
+  color: var(--pip-text);
+  border: 1px solid var(--pip-border);
+}
+
+.btnSecondary:hover {
+  background: var(--pip-surface-hover);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--pip-primary);
+  outline-offset: 2px;
+}
+
+/* Loading State */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--pip-text-muted);
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid var(--pip-surface);
+  border-top-color: var(--pip-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.emptyState {
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--pip-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .panelHeader {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .section {
+    padding: 1.25rem;
+  }
+
+  .permissionLegend {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .fieldsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .emergencyContacts {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .editingWrapper {
+    flex-direction: column;
+  }
+
+  .editActions {
+    align-self: flex-end;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .panel {
+    --pip-bg: #1e1e2e;
+    --pip-border: #313244;
+    --pip-text: #cdd6f4;
+    --pip-text-muted: #9399b2;
+    --pip-surface: #181825;
+    --pip-surface-hover: #1e1e2e;
+    --pip-editable: #1e3a5f;
+    --pip-readonly: #313244;
+    --pip-sensitive: #3d3522;
+  }
+
+  .input {
+    background: var(--pip-surface);
+    color: var(--pip-text);
+  }
+
+  .emergencyCard {
+    background: var(--pip-surface);
+  }
+
+  .panelHeader {
+    background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+  }
+}
+
+/* Print styles */
+@media print {
+  .editBtn,
+  .actionBtn,
+  .deleteContactBtn,
+  .editContactBtn,
+  .btnPrimary,
+  .btnSecondary {
+    display: none;
+  }
+
+  .panel {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .permissionLegend {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .fieldContainer,
+  .input,
+  .editBtn,
+  .actionBtn,
+  .emergencyCard,
+  .btn {
+    transition: none;
+  }
+
+  .spinner {
+    animation: none;
+    border: 3px solid var(--pip-primary);
+  }
+}

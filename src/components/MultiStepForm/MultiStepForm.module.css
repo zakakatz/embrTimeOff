@@ -1,0 +1,455 @@
+/* =============================================================================
+   Multi-Step Form Styles
+   ============================================================================= */
+
+/* Container */
+.multiStepForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* =============================================================================
+   Progress Indicator
+   ============================================================================= */
+
+.progressIndicator {
+  padding: 1rem 0;
+}
+
+.progressIndicator.horizontal .stepList {
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.progressIndicator.vertical .stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stepList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.progressIndicator.horizontal .stepItem {
+  flex-direction: column;
+  text-align: center;
+}
+
+.progressIndicator.vertical .stepItem {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.stepButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: default;
+  text-align: left;
+  width: 100%;
+}
+
+.progressIndicator.horizontal .stepButton {
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.stepItem.clickable .stepButton {
+  cursor: pointer;
+}
+
+.stepItem.clickable .stepButton:hover .stepIndicator {
+  transform: scale(1.1);
+}
+
+.stepItem.clickable .stepButton:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Step Indicator Circle */
+.stepIndicator {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.status-upcoming .stepIndicator {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  border: 2px solid #d1d5db;
+}
+
+.status-current .stepIndicator {
+  background-color: #3b82f6;
+  color: white;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.status-completed .stepIndicator {
+  background-color: #10b981;
+  color: white;
+  border: 2px solid #10b981;
+}
+
+.status-error .stepIndicator {
+  background-color: #dc2626;
+  color: white;
+  border: 2px solid #dc2626;
+}
+
+.stepNumber {
+  font-variant-numeric: tabular-nums;
+}
+
+.currentDot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Step Content */
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.stepLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.status-upcoming .stepLabel {
+  color: #9ca3af;
+}
+
+.status-current .stepLabel {
+  color: #1f2937;
+}
+
+.status-completed .stepLabel {
+  color: #374151;
+}
+
+.status-error .stepLabel {
+  color: #dc2626;
+}
+
+.stepDesc {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Connector Line */
+.stepConnector {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.progressIndicator.horizontal .stepConnector {
+  position: absolute;
+  left: calc(50% + 1.25rem);
+  right: calc(-50% + 1.25rem);
+  top: 1.25rem;
+  padding: 0;
+}
+
+.progressIndicator.vertical .stepConnector {
+  position: absolute;
+  left: 1.25rem;
+  top: 2.5rem;
+  bottom: -0.5rem;
+  width: 2px;
+  flex: none;
+  padding: 0;
+}
+
+.connectorLine {
+  height: 2px;
+  width: 100%;
+  background-color: #d1d5db;
+  transition: background-color 0.3s ease;
+}
+
+.progressIndicator.vertical .connectorLine {
+  width: 2px;
+  height: 100%;
+}
+
+.connectorComplete {
+  background-color: #10b981;
+}
+
+/* Mobile Progress */
+.mobileProgress {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .progressIndicator.horizontal .stepList {
+    display: none;
+  }
+  
+  .mobileProgress {
+    display: block;
+  }
+  
+  .mobileProgressText {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobileProgressBar {
+    height: 6px;
+    background-color: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .mobileProgressFill {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+}
+
+/* =============================================================================
+   Form Content
+   ============================================================================= */
+
+.formContent {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stepHeader {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.stepDescription {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* =============================================================================
+   Step Navigation
+   ============================================================================= */
+
+.stepNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 1rem;
+}
+
+.navigationLeft,
+.navigationRight {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.navButtonPrimary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.navButtonPrimary:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.navButtonPrimary:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.navButtonSecondary {
+  background-color: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.navButtonSecondary:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.navButtonSecondary:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.navButtonTertiary {
+  background-color: transparent;
+  color: #6b7280;
+}
+
+.navButtonTertiary:hover:not(:disabled) {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.navButtonTertiary:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Loading Spinner */
+.loadingSpinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =============================================================================
+   Unsaved Changes Warning
+   ============================================================================= */
+
+.unsavedChanges {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1.25rem;
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 100;
+}
+
+.unsavedChanges::before {
+  content: '⚠️';
+}
+
+/* =============================================================================
+   Responsive Adjustments
+   ============================================================================= */
+
+@media (max-width: 640px) {
+  .formContent {
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+  }
+  
+  .stepNavigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .navigationLeft,
+  .navigationRight {
+    width: 100%;
+  }
+  
+  .navigationLeft {
+    order: 2;
+  }
+  
+  .navigationRight {
+    order: 1;
+    flex-direction: column;
+  }
+  
+  .navButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .unsavedChanges {
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
