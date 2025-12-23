@@ -52,6 +52,7 @@ from src.api.organizational_analytics import organizational_analytics_router
 from src.api.employee_policy_info import employee_policy_info_router
 from src.api.envelope_management import envelope_router
 from src.api.balance_analytics import balance_analytics_router
+from src.api.work_schedule_management import work_schedule_router
 from src.database.database import DatabaseConfig, dispose_engine, get_engine
 from src.routes.api import api_error_handler, api_router
 from src.utils.errors import APIError, ValidationError
@@ -167,6 +168,7 @@ def create_app() -> FastAPI:
     app.include_router(employee_policy_info_router)
     app.include_router(envelope_router)
     app.include_router(balance_analytics_router)
+    app.include_router(work_schedule_router)
     
     # Register exception handlers
     app.add_exception_handler(APIError, api_error_handler)
